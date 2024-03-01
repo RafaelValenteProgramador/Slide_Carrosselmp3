@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Slide Carrossel</title>
+</head>
+<body>
+
+    <audio controls id="meu-audio" autoplay loop preload="auto">
+        <source src="audios/2YouWantItDarker.mp3" type="audio/mpeg">
+    </audio>
+    
+    <section class="container">
+
+        <div class="slides">
+            <input type="radio" name="radio" id="radio_1" checked>
+            <input type="radio" name="radio" id="radio_2">
+            <input type="radio" name="radio" id="radio_3">
+            <input type="radio" name="radio" id="radio_4">
+            <input type="radio" name="radio" id="radio_5">
+            <input type="radio" name="radio" id="radio_6">
+            <input type="radio" name="radio" id="radio_7">
+            <input type="radio" name="radio" id="radio_8">
+
+            <div class="imagens one">
+                <img src="imagens/denzel_frase.jpg" alt="denzel">
+            </div>
+
+            <div class="imagens">
+                <img src="imagens/denzel_frase1.jpg" alt="denzell">
+            </div>
+
+            <div class="imagens">
+                <img src="imagens/sparta_frase.jpg" alt="sparta">
+            </div>
+
+            <div class="imagens">
+                <img src="imagens/akiles_frase.jpg" alt="akiles">
+            </div>
+
+            <div class="imagens">
+                <img src="imagens/rambo_frase.jpg" alt="rambo">
+            </div>
+
+            <div class="imagens">
+                <img src="imagens/thomas_shelby_frase1.jpg" alt="shelby">
+            </div>
+
+            <div class="imagens">
+                <img src="imagens/thomas_shelby_frase2.jpg" alt="shelbyy">
+            </div>
+
+            <div class="imagens">
+                <img src="imagens/thomas_shelby_frase3.jpg" alt="shelbyyy">
+            </div>
+
+        </div>
+
+        <div class="navigation">
+            <label for="radio_1" class="nav"></label>
+            <label for="radio_2" class="nav"></label>
+            <label for="radio_3" class="nav"></label>
+            <label for="radio_4" class="nav"></label>
+            <label for="radio_5" class="nav"></label>
+            <label for="radio_6" class="nav"></label>
+            <label for="radio_7" class="nav"></label>
+            <label for="radio_8" class="nav"></label>
+        </div>
+
+    </section>
+    
+    <!-- <script src="script.js"></script> -->
+
+    <script>
+        const meuAudio = document.getElementById('meu-audio');
+        const slides = document.querySelectorAll('.slides input[type="radio"]');
+        const duracaoAudio = 86; // Duração do áudio em segundos (01:26)
+
+        let slideAtual = 0;
+
+        function avancarSlide() {
+            slides[slideAtual].checked = false;
+            slideAtual = (slideAtual + 1) % slides.length;
+            slides[slideAtual].checked = true;
+        }
+
+        meuAudio.addEventListener('timeupdate', () => {
+        const tempoAtual = meuAudio.currentTime;
+        const tempoPorSlide = duracaoAudio / slides.length;
+        const proximoSlide = Math.floor(tempoAtual / tempoPorSlide);
+
+        if (proximoSlide !== slideAtual) {
+            avancarSlide();
+        }
+        });
+
+        // Inicie o áudio e o primeiro slide
+        meuAudio.play();
+        slides[slideAtual].checked = true;
+    </script>
+
+
+</body>
+</html>
